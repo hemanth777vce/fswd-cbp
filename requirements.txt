@@ -1,0 +1,239 @@
+Conversation Log
+give commands for running
+
+Here are the commands to run DevPulse on your machine:
+
+Option 1: Dual-Terminal Method (Recommended for Development)
+
+Open two separate terminal windows inside the project root (fswd-CBP):
+
+Terminal 1: Start the Backend Server
+bash
+cd server
+npm run dev
+
+Backend runs on: http://localhost:5000
+(Uses nodemon for auto-restart on changes)
+
+Terminal 2: Start the Frontend Client
+bash
+cd client
+npm run dev
+
+Frontend runs on: http://localhost:5173
+
+Option 2: Run Using Root Scripts (From fswd-CBP root folder)
+
+If you have already installed dependencies, you can start each service directly from the root directory:
+
+Terminal 1 (Backend):
+
+bash
+npm run server
+
+Terminal 2 (Frontend):
+
+bash
+npm run client
+If Running for the Very First Time (Install Dependencies)
+
+Run this single command from the project root to install all dependencies for both server and client:
+
+bash
+npm run install:all
+How to Run the Automated Test Suites
+
+To verify authentication, CRUD, likes, and backend security guardrails:
+
+bash
+# 1. Run Authentication & JWT Tests (14 assertions)
+node server/test-auth.js
+# 2. Run Full API, Posts, Likes & HTTP 403 Security Tests (16 assertions)
+node server/test-all-api.js
+🌐 Open in Your Browser
+
+Once both servers are running, open: 👉 http://localhost:5173
+
+10:28 PM
+
+PS C:\Users\satya\OneDrive\Desktop\fswd-CBP> cd server
+PS C:\Users\satya\OneDrive\Desktop\fswd-CBP\server> npm run dev
+
+> devpulse-backend@1.0.0 dev
+> nodemon server.js
+
+[nodemon] 3.1.14
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node server.js`
+[MongoDB] Could not connect to primary URI (mongodb://localhost:27017/devpulse): connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+[MongoDB] Attempting fallback to in-memory MongoDB server...
+[MongoDB] Fallback connected to In-Memory MongoDB: mongodb://127.0.0.1:57497/
+[MongoDB] NOTE: Data will persist in memory for this session. Set a valid MONGO_URI in .env for persistent storage.
+node:events:505
+    throw er; // Unhandled 'error' event
+    ^
+
+Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:2324:16)
+    at listenInCluster (node:net:2433:12)
+    at Server.listen (node:net:2558:7)
+    at app.listen (C:\Users\satya\OneDrive\Desktop\fswd-CBP\server\node_modules\express\lib\application.js:635:24)
+    at startServer (C:\Users\satya\OneDrive\Desktop\fswd-CBP\server\server.js:59:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:2412:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 5000
+}
+
+Node.js v24.20.0
+[nodemon] app crashed - waiting for file changes before starting... 
+PS C:\Users\satya\OneDrive\Desktop\fswd-CBP\server> npm run server
+npm error Missing script: "server"
+npm error
+npm error To see a list of scripts, run:
+npm error   npm run
+npm error A complete log of this run can be found in: C:\Users\satya\AppData\Local\npm-cache\_logs\2026-10-06T16_59_40_477Z-debug-0.log 
+PS C:\Users\satya\OneDrive\Desktop\fswd-CBP\server> 
+
+The port error (EADDRINUSE: address already in use :::5000) occurred because our background verification process was still running on port 5000.
+
+✅ What Has Been Fixed
+Background Processes Terminated: Both port 5000 (backend) and port 5173 (frontend) have been completely cleared and released.
+Script Aliases Added: Added "server" into server/package.json and "client" into client/package.json so the commands work whether you are inside the subfolders or at the root.
+🚀 How to Run Now
+
+You have your choice of two ways to run:
+
+Option A: Running from the subfolders (What you were doing)
+
+Terminal 1 (Backend):
+
+powershell
+cd server
+npm run dev
+
+Terminal 2 (Frontend - in a new terminal window):
+
+powershell
+cd client
+npm run dev
+Option B: Running from the root directory (fswd-CBP)
+
+If your terminal is currently at C:\Users\satya\OneDrive\Desktop\fswd-CBP:
+
+Terminal 1 (Backend):
+
+powershell
+npm run server
+
+Terminal 2 (Frontend - in a new terminal window):
+
+powershell
+npm run client
+
+Once both are running, open your browser and navigate to: 👉 http://localhost:5173
+
+10:31 PM
+give requirements.txt 
+
+In Node.js / MERN projects, dependencies are managed via package.json. However, for college project submissions, lab evaluations, and software specification documentation, I have created a formatted requirements.txt file in your project root:
+
+📁 File Created: requirements.txt
+
+Contents of requirements.txt
+text
+# ==============================================================================
+# DevPulse – Project Dependencies and System Requirements
+# Project: DevPulse (A Minimalist Full-Stack Micro-Social Platform)
+# Stack: MERN (MongoDB, Express.js, React.js, Node.js)
+# ==============================================================================
+# NOTE: In Node.js / MERN projects, npm dependencies are natively tracked in 
+# 'package.json'. This requirements.txt file is provided for academic project 
+# evaluation, submission documentation, and software specification requirements.
+# ==============================================================================
+# ------------------------------------------------------------------------------
+# 1. RUNTIME & SYSTEM PREREQUISITES
+# ------------------------------------------------------------------------------
+node>=18.0.0
+npm>=9.0.0
+mongodb>=6.0.0
+# ------------------------------------------------------------------------------
+# 2. BACKEND DEPENDENCIES (server/package.json)
+# ------------------------------------------------------------------------------
+express==4.21.2               # Web application framework for Node.js
+mongoose==8.9.5               # MongoDB Object Data Modeling (ODM) library
+jsonwebtoken==9.0.2           # Stateless JSON Web Token authentication
+bcryptjs==2.4.3               # Salted password hashing algorithm
+cors==2.8.5                   # Cross-Origin Resource Sharing middleware
+dotenv==16.4.7                # Environment variable configuration loader
+mongodb-memory-server==10.1.3 # In-memory MongoDB runner (dev zero-config database)
+nodemon==3.1.9                # Automatic server reloader for development
+# ------------------------------------------------------------------------------
+# 3. FRONTEND DEPENDENCIES (client/package.json)
+# ------------------------------------------------------------------------------
+react==18.3.1                 # Core React library
+react-dom==18.3.1             # React DOM renderer
+react-router-dom==6.29.0      # Client-side SPA routing
+axios==1.7.9                  # HTTP client for REST API communication
+lucide-react==0.475.0         # Modern SVG icon set
+vite==5.4.14                  # Frontend bundler & dev server
+@vitejs/plugin-react==4.3.4   # React plugin for Vite
+tailwindcss==3.4.17           # Utility-first CSS framework
+postcss==8.5.1                # CSS transformation tool
+autoprefixer==10.4.20         # PostCSS vendor prefixing plugin
+# ------------------------------------------------------------------------------
+# 4. ENVIRONMENT VARIABLES SPECIFICATION (server/.env)
+# ------------------------------------------------------------------------------
+PORT=5000
+NODE_ENV=development
+MONGO_URI=mongodb://localhost:27017/devpulse
+JWT_SECRET=devpulse_college_project_jwt_secret_key_12345
+JWT_EXPIRE=7d
+CLIENT_URL=http://localhost:5173
+
+💡 Viva Tip: If your evaluator asks about requirements.txt: "While Python projects use pip install -r requirements.txt, in the MERN / JavaScript ecosystem, npm natively tracks packages in package.json and locks exact dependency trees in package-lock.json. We have included requirements.txt to provide a complete software specification checklist for submission."
+
+10:48 PM
+# ==============================================================================
+# DevPulse – Project Dependencies and System Requirements
+# Project: DevPulse (A Minimalist Full-Stack Micro-Social Platform)
+# Stack: MERN (MongoDB, Express.js, React.js, Node.js)
+# ==============================================================================
+# NOTE: In Node.js / MERN projects, npm dependencies are natively tracked in 
+# 'package.json'. This requirements.txt file is provided for academic project 
+# evaluation, submission documentation, and software specification requirements.
+# ==============================================================================
+# ------------------------------------------------------------------------------
+# 1. RUNTIME & SYSTEM PREREQUISITES
+# ------------------------------------------------------------------------------
+# Node.js runtime environment (v18.0.0 or higher recommended)
+node>=18.0.0
+# Node Package Manager (v9.0.0 or higher)
+npm>=9.0.0
+# Database (Local MongoDB Community Server OR MongoDB Atlas Cloud OR In-Memory)
+mongodb>=6.0.0
+# ------------------------------------------------------------------------------
+# 2. BACKEND DEPENDENCIES (server/package.json)
+# ------------------------------------------------------------------------------
+# Web application framework for Node.js
+express==4.21.2
+# MongoDB Object Data Modeling (ODM) library
+mongoose==8.9.5
+# Stateless JSON Web Token authentication
+jsonwebtoken==9.0.2
+# Salted password hashing algorithm (pure JavaScript)
+bcryptjs==2.4.3
+# Cross-Origin Resource Sharing middleware
+cors==2.8.5
+# Environment variable configuration loader
+dotenv==16.4.7
+# Development: In-memory MongoDB runner (zero-config local database fallback)
+mongodb-memory-server==10.1.3
+# Development: Automatic server restarter on code changes
