@@ -1,0 +1,26 @@
+{
+  "name": "devpulse-root",
+  "version": "1.0.0",
+  "description": "DevPulse – A Minimalist Full-Stack Micro-Social Platform (College FSWD Project)",
+  "scripts": {
+    "install:server": "cd server && npm install",
+    "install:client": "cd client && npm install",
+    "install:all": "cd server && npm install && cd ../client && npm install",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "test:server": "cd server && node test-all-api.js"
+  },
+  "keywords": [
+    "mern",
+    "fullstack",
+    "react",
+    "node",
+    "express",
+    "mongodb",
+    "tailwind",
+    "jwt",
+    "fswd"
+  ],
+  "author": "",
+  "license": "ISC"
+}
